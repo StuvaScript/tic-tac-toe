@@ -1,3 +1,94 @@
 * {
     box-sizing: border-box;
 }
+
+:root {
+    --white: rgb(214, 212, 212);
+}
+
+body {
+    background: rgb(69, 99, 67);
+    font-size: 2rem;
+    color: var(--white);
+    font-family: 'Gochi Hand', cursive;
+    text-shadow: 0px 0px 3px var(--white);
+    letter-spacing: 3px;
+    height: 100vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: space-around;
+}
+
+h1 {
+    margin: 0;
+    position: relative;
+    left: 40px;
+    font-size: 6rem;
+    transform: rotate(-3deg)
+}
+
+.container {
+    display: inline-grid;
+    grid-template: auto / repeat(3, auto);
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    border: solid 5px var(--white);
+    font-size: 13rem;
+    box-shadow: 0px 0px 3px var(--white);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#s0 {
+    border-top-left-radius: 15px;
+}
+
+#s2 {
+    border-top-right-radius: 15px;
+}
+
+#s6 {
+    border-bottom-left-radius: 15px;
+}
+
+#s8 {
+    border-bottom-right-radius: 15px;
+}
+
+.players {
+    height: 150px;
+    padding: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.name {
+    font-size: .8em;
+
+    display: grid;
+    justify-items: center;
+}
+
+.name > div:first-child {
+    text-decoration: underline;
+}
+
+.name > div:last-child {
+    font-size: 5rem;
+}
+
+.round {
+    font-size: 3rem;
+    transform: rotate(2deg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
