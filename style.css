@@ -39,6 +39,7 @@ h1 {
     border: solid 5px var(--white);
     font-size: 13rem;
     box-shadow: 0px 0px 3px var(--white);
+    cursor: pointer;
     
     display: flex;
     justify-content: center;
