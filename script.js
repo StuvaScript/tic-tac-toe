@@ -6,10 +6,17 @@
 // break the grid layout, make it 8 letters with all letters lowercase accept
 // the first letter is capitalized.
 
-//Color the X's and O's red and blue respectively
+//Color the X's and O's red and blue respectively. Probably add a red or blue
+// class to HTML that is styled in CSS along with adding the innerText.
+
+// Need to create a player factory function. Might need to attach the players
+// to the X's and O's switchSymbol function
+
+// Need to deny access to picking squares that are already taken. Probably just
+// detect if innerText is empty or not.
 
 const gameBoard = (() => {
-    const board = ['O', 'X', 'X', , 'O', 'O', , 'X', 'O'];
+    const board = [ , , , , , , , , ];
 
     return {board};
 })();
@@ -17,20 +24,27 @@ const gameBoard = (() => {
 const displayController = (() => {
     // Nodelist
     const _getElement = document.querySelectorAll('.square');
+    let _playerTurn;
 
     _getElement.forEach(element => {
-        element.addEventListener('click', () => {
-            console.log(element);
+        element.addEventListener('click', (e) => {
+
+            // X's or O's
+            const switchSymbol = () => {                
+                (_playerTurn === undefined || _playerTurn === 'X') ? _playerTurn = 'O' : _playerTurn = 'X';
+                return _playerTurn;
+            };
+
+            // Adds X's or O's to gameBoard.board aray
+            gameBoard.board.splice(`${e.target.getAttribute('data-array')}`, 1, switchSymbol())
+            
+            // Cycles thru the array and displays X's or O's on the HTML
+            gameBoard.board.forEach((value, index) => {
+                const _getIndex = _getElement[`${index}`];
+                _getIndex.innerText = `${value}`;
+            })
         });
     })
-
-    const _boardDisplay = gameBoard.board.forEach((value, index) => {
-        const _getIndex = _getElement[`${index}`];
-        // console.log(_getIndex);
-        _getIndex.innerText = `${value}`;
-    })
-
-    console.log(_getElement);
-
+    // Delete this return if you dont need to actually return anything
     return {};
 })();
