@@ -6,9 +6,6 @@
 // break the grid layout, make it 8 letters with all letters lowercase accept
 // the first letter is capitalized.
 
-//Color the X's and O's red and blue respectively. Probably add a red or blue
-// class to HTML that is styled in CSS along with adding the innerText.
-
 // Need to create a player factory function. Might need to attach the players
 // to the X's and O's switchSymbol function
 
@@ -92,4 +89,21 @@ const displayController = (() => {
     })
     // Delete this return if you don't need to actually return anything
     return {};
+})();
+
+const players = (() => {
+    const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
+    // console.log(_getPlayerName);
+
+    // For some reason its only picking up when I click on the second
+    // input button. Gotta fix this below
+
+    const _buttonAction = document.querySelectorAll('button'); // <-- Nodelist
+    console.log(_buttonAction);
+    _buttonAction.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('buttz');
+        })
+    })
 })();
