@@ -4,6 +4,8 @@
 
 :root {
     --white: rgb(214, 212, 212);
+    --red: rgb(218, 70, 109);
+    --blue: rgb(108, 137, 240);
 }
 
 body {
@@ -45,6 +47,16 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.red {
+    color: var(--red);
+    text-shadow: 0px 0px 3px var(--red);
+}
+
+.blue {
+    color: var(--blue);
+    text-shadow: 0px 0px 3px var(--blue);
 }
 
 #s0 {

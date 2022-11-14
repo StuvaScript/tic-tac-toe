@@ -12,46 +12,50 @@
 // Need to create a player factory function. Might need to attach the players
 // to the X's and O's switchSymbol function
 
-// Need to deny access to picking squares that are already taken. Probably just
-// detect if innerText is empty or not.
 
 const gameBoard = (() => {
-    const board = [ , , , , , , , , ];
+    const board = [ , , , , , , , , , ];
 
     return {board};
 })();
 
 const displayController = (() => {
-    // Nodelist
-    const _getElement = document.querySelectorAll('.square');
+    
+    const _getElement = document.querySelectorAll('.square'); // <-- Nodelist
+    const _displayWinAnnounce = document.querySelector('.round');
     let _playerTurn;
+    let _gameOver = false;
+    let _moves = 0;
 
     _getElement.forEach(element => {
         element.addEventListener('click', (e) => {
 
-            if (e.target.innerText === '') {
+            if (e.target.innerText === '' && _gameOver === false) {
                 // X's or O's
                 const switchSymbol = () => {     
                     (_playerTurn === undefined || _playerTurn === 'X') ? _playerTurn = 'O' : _playerTurn = 'X';
                     return _playerTurn;
                 };
 
-                // Adds X's or O's to gameBoard.board aray
+                // Adds X's or O's to gameBoard.board array
                 gameBoard.board.splice(`${e.target.getAttribute('data-array')}`, 1, switchSymbol())
                 
-                // Cycles thru the array and displays X's or O's on the HTML
+                // Displays X's or O's on the HTML and adds color classes
                 gameBoard.board.forEach((value, index) => {
-                    const _getIndex = _getElement[`${index}`];
-                    _getIndex.innerText = `${value}`;
-                    console.log(index + ' index');
-                    console.log(value + ' value');
+                    _getElement[`${index}`].innerText = `${value}`;
+                
+                    if (_getElement[`${index}`].innerText === 'X') {
+                        _getElement[`${index}`].classList.add('red');
+                    } else {
+                        _getElement[`${index}`].classList.add('blue');
+                    }
                 })
-
-                // Working on the logic to a tie game....
                 
                 // Winning logic and announces winner.
                 const _winner = (() => {
-                    let whoWon;
+                    let whoWon = 'nobody';
+                    _moves++;
+
                     if (gameBoard.board[0] === 'X' && gameBoard.board[3] === 'X' && gameBoard.board[6] === 'X' ||
                         gameBoard.board[1] === 'X' && gameBoard.board[4] === 'X' && gameBoard.board[7] === 'X' ||
                         gameBoard.board[2] === 'X' && gameBoard.board[5] === 'X' && gameBoard.board[8] === 'X' ||
@@ -60,8 +64,9 @@ const displayController = (() => {
                         gameBoard.board[6] === 'X' && gameBoard.board[7] === 'X' && gameBoard.board[8] === 'X' ||
                         gameBoard.board[0] === 'X' && gameBoard.board[4] === 'X' && gameBoard.board[8] === 'X' ||
                         gameBoard.board[2] === 'X' && gameBoard.board[4] === 'X' && gameBoard.board[6] === 'X') {
-                        whoWon = 'loser';
-                        console.log('Loser!!');
+                        whoWon = 'loser!!';
+                        _gameOver = true;
+                        _displayWinAnnounce.innerText = whoWon;
                     } else if (gameBoard.board[0] === 'O' && gameBoard.board[3] === 'O' && gameBoard.board[6] === 'O' ||
                         gameBoard.board[1] === 'O' && gameBoard.board[4] === 'O' && gameBoard.board[7] === 'O' ||
                         gameBoard.board[2] === 'O' && gameBoard.board[5] === 'O' && gameBoard.board[8] === 'O' ||
@@ -70,11 +75,16 @@ const displayController = (() => {
                         gameBoard.board[6] === 'O' && gameBoard.board[7] === 'O' && gameBoard.board[8] === 'O' ||
                         gameBoard.board[0] === 'O' && gameBoard.board[4] === 'O' && gameBoard.board[8] === 'O' ||
                         gameBoard.board[2] === 'O' && gameBoard.board[4] === 'O' && gameBoard.board[6] === 'O') {
-                        whoWon = 'winner';
-                        console.log('Winner!!');
-                    } 
+                        whoWon = 'winner!!';
+                        _gameOver = true;
+                        _displayWinAnnounce.innerText = whoWon;
+                    } else if (_moves === 9 && whoWon === 'nobody') {
+                        whoWon = 'tie!!';
+                        _gameOver = true;
+                        _displayWinAnnounce.innerText = whoWon;
+                    }
                     
-                console.log(gameBoard.board);
+                // console.log(gameBoard.board);
                 })();
                 
             };    
