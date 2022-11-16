@@ -91,19 +91,56 @@ const displayController = (() => {
     return {};
 })();
 
-const players = (() => {
-    const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
-    // console.log(_getPlayerName);
+// let player1;
+// let player2;
 
-    // For some reason its only picking up when I click on the second
-    // input button. Gotta fix this below
+//     // Taking the player name input data and creating an object with it
+// const _buttonAction = document.querySelectorAll('button') // <-- Nodelist
+//     .forEach((button) => {
+//         button.addEventListener('click', (e) => {
+//             e.preventDefault();
+//             const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
+//             player1 = players(_getPlayerName[0].value);
+//             player2 = players(_getPlayerName[1].value);
+//         })
+//     })
 
-    const _buttonAction = document.querySelectorAll('button'); // <-- Nodelist
-    console.log(_buttonAction);
-    _buttonAction.forEach(button => {
+//     // Player name factory function
+// const players = (name) => {
+//     const playerName = name;   
+//     return {playerName};
+// };
+
+
+
+// Trying to figure out how to return the player1 and player2 dynamic values out
+// of this module. If I can't figure it out, delete the code below and uncomment
+// the code above and you'll be gravy baby!!
+
+
+const playerModule = (() => {
+
+
+let player1;
+let player2;
+
+    // Taking the player name input data and creating an object with it
+const _buttonAction = document.querySelectorAll('button') // <-- Nodelist
+    .forEach((button) => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('buttz');
+            const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
+            player1 = players(_getPlayerName[0].value);
+            player2 = players(_getPlayerName[1].value);
         })
     })
+
+    // Player name factory function
+const players = (name) => {
+    const playerName = name;   
+    return {playerName};
+};
+
+
+return {player1};
 })();

@@ -127,9 +127,10 @@ form {
 }
 
 button {
+    font-size: 1rem;
+    height: 17px;;
     position: absolute;
-    right: -90px;
-    top: 25px;
+    top: 62px;
     border-radius: 15px;
     border: none;
     background: var(--white);
