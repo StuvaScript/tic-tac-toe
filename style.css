@@ -90,6 +90,11 @@ h1 {
     justify-items: center;
 }
 
+.newName {
+    font-size: 3rem;
+    margin-bottom: -40px;
+}
+
 input {
     appearance: none;
     border: none;
@@ -108,10 +113,6 @@ input::placeholder {
 
 input:focus {
     outline: none;
-}
-
-.name > div:first-child {
-    text-decoration: underline;
 }
 
 .name > div:last-child {

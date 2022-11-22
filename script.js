@@ -91,17 +91,37 @@ const displayController = (() => {
     return {};
 })();
 
+
 // let player1;
 // let player2;
 
-//     // Taking the player name input data and creating an object with it
-// const _buttonAction = document.querySelectorAll('button') // <-- Nodelist
+    
+// const buttonAction = document.querySelectorAll('button') // <-- Nodelist
 //     .forEach((button) => {
 //         button.addEventListener('click', (e) => {
 //             e.preventDefault();
+
+//             // Taking the player name input data and creating an object with it
 //             const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
 //             player1 = players(_getPlayerName[0].value);
 //             player2 = players(_getPlayerName[1].value);
+
+//             const _grabForm = document.querySelectorAll('form'); // <-- Nodelist
+//             const _grabNameClass = document.querySelectorAll('.name'); // <-- Nodelist
+//             const _newDiv = document.createElement('div');
+//             if (player1.playerName !== '') {
+//                 _grabForm[0].remove();
+//                 _newDiv.classList.add('newName');
+//                 _newDiv.innerText = player1.playerName;
+//                 _grabNameClass[0].insertBefore(_newDiv, _grabNameClass[0].children[0]);
+//             }
+
+//             if (player2.playerName !== '') {
+//                 _grabForm[1].remove();
+//                 _newDiv.classList.add('newName');
+//                 _newDiv.innerText = player2.playerName;
+//                 _grabNameClass[1].insertBefore(_newDiv, _grabNameClass[1].children[0]);
+//             }
 //         })
 //     })
 
@@ -111,36 +131,103 @@ const displayController = (() => {
 //     return {playerName};
 // };
 
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 
+// let player1;
+// let player2;
 
-// Trying to figure out how to return the player1 and player2 dynamic values out
-// of this module. If I can't figure it out, delete the code below and uncomment
-// the code above and you'll be gravy baby!!
+    
+// const buttonAction = document.querySelectorAll('button') // <-- Nodelist
+//     .forEach((button) => {
+//         button.addEventListener('click', (e) => {
+//             e.preventDefault();
 
+//             // Taking the player name input data and creating an object with it
+//             const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
+//             player1 = players(_getPlayerName[0].value);
+//             player2 = players(_getPlayerName[1].value);
 
-const playerModule = (() => {
+//             const _grabForm = document.querySelectorAll('form'); // <-- Nodelist
+//             const _grabNameClass = document.querySelectorAll('.name'); // <-- Nodelist
+//             const _newDiv = document.createElement('div');
+//             if (player1.playerName !== '') {
+//                 _grabForm[0].remove();
+//                 _newDiv.classList.add('newName');
+//                 _newDiv.innerText = player1.playerName;
+//                 _grabNameClass[0].insertBefore(_newDiv, _grabNameClass[0].children[0]);
+//             }
 
+//             if (player2.playerName !== '') {
+//                 _grabForm[1].remove();
+//                 _newDiv.classList.add('newName');
+//                 _newDiv.innerText = player2.playerName;
+//                 _grabNameClass[1].insertBefore(_newDiv, _grabNameClass[1].children[0]);
+//             }
+//         })
+//     })
 
-let player1;
-let player2;
+//     // Player name factory function
+// const players = (name) => {
+//     const playerName = name;   
+//     return {playerName};
+// };
 
-    // Taking the player name input data and creating an object with it
-const _buttonAction = document.querySelectorAll('button') // <-- Nodelist
-    .forEach((button) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const _getPlayerName = document.querySelectorAll('input'); // <-- Nodelist
-            player1 = players(_getPlayerName[0].value);
-            player2 = players(_getPlayerName[1].value);
-        })
-    })
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 
-    // Player name factory function
-const players = (name) => {
-    const playerName = name;   
-    return {playerName};
-};
+// Currently copying the video's method on the code below using the info
+// above. Even farther above that, I have my original code commented out. If
+// shit hits the fan, just uncomment the far above code and delete everything
+// below it :)
 
+(function() {
 
-return {player1};
+    const _newPlayers = {
+        playersArray: [],
+        init: function() {
+            this.cacheDom();
+            this.bindEvents();
+            // this.render();
+        },
+        cacheDom: function() {
+            this._grabNameClass = document.querySelectorAll('.name'); // <-- Nodelist
+            this._form = document.querySelectorAll('form'); // <-- Nodelist
+            this._button = document.querySelectorAll('button'); // <-- Nodelist
+            this._playerName = document.querySelectorAll('input');
+            
+            this._newDiv = document.createElement('div');
+            this._newDiv.classList.add('newName');
+        },
+
+        bindEvents: function() {
+            this._button.forEach((button, index) => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.addPerson(this._playerName[index].value, index);
+                    this.render(index);
+                })
+            })
+        },
+        render: function(index) {
+            this._form[index].remove();
+            this._grabNameClass[index].insertBefore(this._newDiv, this._grabNameClass[index].children[0]);
+            this._newDiv.innerText = this.playersArray[index];
+        },
+        // Player name factory function
+        addPerson: function(name, index) {
+            if (index === 0) {
+            this.playersArray.unshift(this._playerName[0].value);
+            } else {
+            this.playersArray.push(this._playerName[1].value);
+            }
+
+            console.log(this.playersArray)
+        },
+    }
+
+    _newPlayers.init();
+
 })();
