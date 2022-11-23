@@ -1,10 +1,3 @@
-// At the end of each session, if all code is working as planned, merge your
-// branch with the main. Actively consider not merging if you think the code
-// is too iffy
-
-// Need to create a player factory function. Might need to attach the players
-// to the X's and O's switchSymbol function
-
 
 const gameBoard = (() => {
     const board = [ , , , , , , , , , ];
@@ -141,3 +134,8 @@ const displayController = (() => {
     return {};
 })();
 
+(function() {
+    const reset = document.querySelector('#reset');
+    reset.addEventListener('click', (e) => {
+        window.location.href=window.location.href});
+})();
