@@ -2,10 +2,6 @@
 // branch with the main. Actively consider not merging if you think the code
 // is too iffy
 
-// Limit the number of letters someone can input for their name so it doesn't
-// break the grid layout, make it 8 letters with all letters lowercase accept
-// the first letter is capitalized.
-
 // Need to create a player factory function. Might need to attach the players
 // to the X's and O's switchSymbol function
 
@@ -14,6 +10,58 @@ const gameBoard = (() => {
     const board = [ , , , , , , , , , ];
 
     return {board};
+})();
+
+const playerController = (() => {
+    let playersArray = [];
+
+    const _newPlayers = {
+        init: function() {
+            this.cacheDom();
+            this.bindEvents();
+        },
+        cacheDom: function() {
+            this._grabNameClass = document.querySelectorAll('.name'); // <-- Nodelist
+            this._form = document.querySelectorAll('form'); // <-- Nodelist
+            this._button = document.querySelectorAll('button'); // <-- Nodelist
+            this._playerName = document.querySelectorAll('input');  
+            this._lastChild = document.querySelectorAll('.name > div:last-child'); // <-- Nodelist
+        },
+        bindEvents: function() {
+            this._button.forEach((button, index) => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (this._playerName[index].value !== '') {
+                        this.addPerson(this._playerName[index].value, index);
+                        this.render(index);
+                    }
+                })
+            })
+        },
+        render: function(index) {
+            this._form[index].remove();
+            this._newDiv = document.createElement('div');
+            this._newDiv.classList.add('newName');
+            this._grabNameClass[index].insertBefore(this._newDiv, this._grabNameClass[index].children[0]);
+            this._lastChild[index].classList.add('named');
+            if (playersArray.length === 1) {
+                this._newDiv.innerText = playersArray[0];
+            } else {
+                this._newDiv.innerText = playersArray[index];
+            }        
+        },
+        addPerson: function(name, index) {
+            if (index === 0) {
+            playersArray.unshift(this._playerName[0].value);
+            } else {
+            playersArray.push(this._playerName[1].value);
+            }
+        },
+    }
+
+    _newPlayers.init();
+
+    return {playersArray};
 })();
 
 const displayController = (() => {
@@ -26,6 +74,9 @@ const displayController = (() => {
 
     _getElement.forEach(element => {
         element.addEventListener('click', (e) => {
+            if (playerController.playersArray.length !== 2) {
+                return;
+            }
 
             if (e.target.innerText === '' && _gameOver === false) {
                 // X's or O's
@@ -61,7 +112,7 @@ const displayController = (() => {
                         gameBoard.board[6] === 'X' && gameBoard.board[7] === 'X' && gameBoard.board[8] === 'X' ||
                         gameBoard.board[0] === 'X' && gameBoard.board[4] === 'X' && gameBoard.board[8] === 'X' ||
                         gameBoard.board[2] === 'X' && gameBoard.board[4] === 'X' && gameBoard.board[6] === 'X') {
-                        whoWon = 'loser!!';
+                        whoWon = `${playerController.playersArray[1]} wins!!`;
                         _gameOver = true;
                         _displayWinAnnounce.innerText = whoWon;
                     } else if (gameBoard.board[0] === 'O' && gameBoard.board[3] === 'O' && gameBoard.board[6] === 'O' ||
@@ -72,7 +123,7 @@ const displayController = (() => {
                         gameBoard.board[6] === 'O' && gameBoard.board[7] === 'O' && gameBoard.board[8] === 'O' ||
                         gameBoard.board[0] === 'O' && gameBoard.board[4] === 'O' && gameBoard.board[8] === 'O' ||
                         gameBoard.board[2] === 'O' && gameBoard.board[4] === 'O' && gameBoard.board[6] === 'O') {
-                        whoWon = 'winner!!';
+                        whoWon = `${playerController.playersArray[0]} wins!!`;
                         _gameOver = true;
                         _displayWinAnnounce.innerText = whoWon;
                     } else if (_moves === 9 && whoWon === 'nobody') {
@@ -81,7 +132,6 @@ const displayController = (() => {
                         _displayWinAnnounce.innerText = whoWon;
                     }
                     
-                // console.log(gameBoard.board);
                 })();
                 
             };    
@@ -91,52 +141,3 @@ const displayController = (() => {
     return {};
 })();
 
-(function() {
-
-    const _newPlayers = {
-        playersArray: [],
-        init: function() {
-            this.cacheDom();
-            this.bindEvents();
-        },
-        cacheDom: function() {
-            this._grabNameClass = document.querySelectorAll('.name'); // <-- Nodelist
-            this._form = document.querySelectorAll('form'); // <-- Nodelist
-            this._button = document.querySelectorAll('button'); // <-- Nodelist
-            this._playerName = document.querySelectorAll('input');  
-            this._lastChild = document.querySelectorAll('.name > div:last-child'); // <-- Nodelist
-        },
-        bindEvents: function() {
-            this._button.forEach((button, index) => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    this.addPerson(this._playerName[index].value, index);
-                    this.render(index);
-                    console.log(this._lastChild);
-                })
-            })
-        },
-        render: function(index) {
-            this._form[index].remove();
-            this._newDiv = document.createElement('div');
-            this._newDiv.classList.add('newName');
-            this._grabNameClass[index].insertBefore(this._newDiv, this._grabNameClass[index].children[0]);
-            this._lastChild[index].classList.add('named');
-            if (this.playersArray.length === 1) {
-                this._newDiv.innerText = this.playersArray[0];
-            } else {
-                this._newDiv.innerText = this.playersArray[index];
-            }        
-        },
-        addPerson: function(name, index) {
-            if (index === 0) {
-            this.playersArray.unshift(this._playerName[0].value);
-            } else {
-            this.playersArray.push(this._playerName[1].value);
-            }
-        },
-    }
-
-    _newPlayers.init();
-
-})();

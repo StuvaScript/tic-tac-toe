@@ -85,7 +85,7 @@ h1 {
     padding: 10px;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .name {
@@ -144,8 +144,11 @@ button {
 }
 
 .round {
-    font-size: 3rem;
-    transform: rotate(2deg);
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    font-size: 4rem;
+    transform: rotate(8deg);
 
     display: flex;
     justify-content: center;
