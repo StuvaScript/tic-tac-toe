@@ -1,49 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <h1>Tic Tac Toe</h1>
     <div class="container">
-        <div class="square" data-array="0"></div>
-        <div class="square" data-array="1"></div>
-        <div class="square" data-array="2"></div>
-        <div class="square" data-array="3"></div>
-        <div class="square" data-array="4"></div>
-        <div class="square" data-array="5"></div>
-        <div class="square" data-array="6"></div>
-        <div class="square" data-array="7"></div>
-        <div class="square" data-array="8"></div>
+      <div class="square" data-array="0"></div>
+      <div class="square" data-array="1"></div>
+      <div class="square" data-array="2"></div>
+      <div class="square" data-array="3"></div>
+      <div class="square" data-array="4"></div>
+      <div class="square" data-array="5"></div>
+      <div class="square" data-array="6"></div>
+      <div class="square" data-array="7"></div>
+      <div class="square" data-array="8"></div>
+    </div>
+    <div class="name-instructions">
+      <p>Enter names to begin</p>
     </div>
     <div class="players">
-        <div class="name">
-            <form action="">
-                <label for="person1">Player 1?</label>
-                <input type="text" name="person1" id="person1" maxlength="10" placeholder="Jimbo">
-                <button id="one">press Enter to submit</button>
-            </form>
-            <div class="blue">O</div>
-        </div>
-        <div class="round"></div>
-        <div class="name">
-            <form action="">
-                <label for="person2">Player 2?</label>
-                <input type="text" name="person2" id="person2" maxlength="10" placeholder="Wilma">
-                <button id="two">press Enter to submit</button>
-            </form>
-            <div class="red">X</div>
-        </div>
+      <div class="name">
+        <form action="">
+          <label for="person1">Player 1</label>
+          <input
+            type="text"
+            name="person1"
+            id="person1"
+            maxlength="10"
+            placeholder="Jimbo"
+          />
+          <button id="one">press Enter to submit</button>
+        </form>
+        <div class="blue">O</div>
+      </div>
+      <div class="round-winner-display"></div>
+      <div class="name">
+        <form action="">
+          <label for="person2">Player 2</label>
+          <input
+            type="text"
+            name="person2"
+            id="person2"
+            maxlength="10"
+            placeholder="Wilma"
+          />
+          <button id="two">press Enter to submit</button>
+        </form>
+        <div class="red">X</div>
+      </div>
     </div>
-    <button id="reset">reset</button>
-</body>
+    <button id="reset">reset game</button>
+  </body>
 </html>

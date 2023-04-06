@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -47,6 +49,10 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.name-instructions {
+  margin: auto;
 }
 
 .red {
@@ -144,7 +150,7 @@ button#two {
   background: var(--white);
 }
 
-.round {
+.round-winner-display {
   position: absolute;
   right: 10%;
   top: 30%;
@@ -164,8 +170,6 @@ button#reset {
   border: none;
   padding: 0px 30px;
 }
-
-/* test */
 
 button#reset:hover {
   background: rgb(192, 192, 192);
