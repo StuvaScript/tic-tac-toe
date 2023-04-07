@@ -17,6 +17,7 @@
   </head>
   <body>
     <h1>Tic Tac Toe</h1>
+    <div class="round-winner-display"></div>
     <div class="container">
       <div class="square" data-array="0"></div>
       <div class="square" data-array="1"></div>
@@ -28,6 +29,7 @@
       <div class="square" data-array="7"></div>
       <div class="square" data-array="8"></div>
     </div>
+    <button id="reset">reset game</button>
     <div class="name-instructions">
       <p>Enter names to begin</p>
     </div>
@@ -42,11 +44,10 @@
             maxlength="10"
             placeholder="Jimbo"
           />
-          <button id="one">press Enter to submit</button>
+          <button class="name-input" id="one">ENTER</button>
         </form>
         <div class="blue">O</div>
       </div>
-      <div class="round-winner-display"></div>
       <div class="name">
         <form action="">
           <label for="person2">Player 2</label>
@@ -57,11 +58,10 @@
             maxlength="10"
             placeholder="Wilma"
           />
-          <button id="two">press Enter to submit</button>
+          <button class="name-input" id="two">ENTER</button>
         </form>
         <div class="red">X</div>
       </div>
     </div>
-    <button id="reset">reset game</button>
   </body>
 </html>

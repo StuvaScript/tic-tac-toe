@@ -13,15 +13,15 @@ const playerController = (() => {
       this.bindEvents();
     },
     cacheDom: function () {
-      this._grabNameClass = document.querySelectorAll(".name"); // <-- Nodelist
-      this._form = document.querySelectorAll("form"); // <-- Nodelist
-      this._button = document.querySelectorAll("button"); // <-- Nodelist
+      this._grabNameClass = document.querySelectorAll(".name");
+      this._form = document.querySelectorAll("form");
+      this._nameButton = document.querySelectorAll(".name-input");
       this._playerName = document.querySelectorAll("input");
-      this._lastChild = document.querySelectorAll(".name > div:last-child"); // <-- Nodelist
+      this._lastChild = document.querySelectorAll(".name > div:last-child");
       this._instructions = document.querySelector(".name-instructions");
     },
     bindEvents: function () {
-      this._button.forEach((button, index) => {
+      this._nameButton.forEach((button, index) => {
         button.addEventListener("click", (e) => {
           e.preventDefault();
           if (this._playerName[index].value !== "") {
