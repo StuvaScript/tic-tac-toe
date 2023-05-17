@@ -19,9 +19,9 @@ body {
   letter-spacing: 3px;
   height: 100vh;
 
-  display: grid;
-  justify-content: center;
-  align-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -33,9 +33,6 @@ h1 {
 }
 
 .round-winner-display {
-  /* position: absolute;
-  right: 10%;
-  top: 30%; */
   font-size: 4rem;
   transform: rotate(4deg);
 
@@ -50,8 +47,6 @@ h1 {
   height: 500px;
   display: inline-grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  /* min-height: 0;
-  min-width: 0; */
 }
 
 @media (max-width: 550px) {
@@ -80,7 +75,6 @@ h1 {
   cursor: pointer;
   user-select: none;
   overflow: hidden;
-  /* min-width: 0; */
 
   display: flex;
   justify-content: center;
@@ -96,6 +90,7 @@ h1 {
 }
 
 .name-instructions {
+  font-size: 8vw;
   margin: auto;
 }
 
@@ -136,10 +131,12 @@ h1 {
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* gap: 30px; */
 }
 
 .name {
   font-size: 0.8em;
+  width: 190px;
 
   display: grid;
   justify-items: center;
@@ -148,7 +145,6 @@ h1 {
 .newName {
   position: absolute;
   font-size: 3rem;
-  /* margin-bottom: -20px; */
 }
 
 input {
@@ -193,6 +189,10 @@ form {
   border-radius: 15px;
   border: none;
   background: var(--white);
+}
+
+#reset {
+  width: 15rem;
 }
 
 #reset:hover {
